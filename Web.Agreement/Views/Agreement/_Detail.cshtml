@@ -1,0 +1,120 @@
+﻿
+@using LIB.Models.DBModels
+@using LIB.Models.Agreement
+@using Microsoft.AspNet.Identity
+
+@model AgreementBindingModel
+@*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+@*<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>*@
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<style>
+    input.input-validation-error,
+    textarea.input-validation-error,
+    select.input-validation-error {
+        background: #FEF1EC;
+        border: 1px solid #CD0A0A;
+    }
+
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+@{
+    var userId = User.Identity.GetUserId();
+}
+
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+    <form method="post" id="frmAgreement">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+        <input type="hidden" name="UserId" id="UserId" value="@userId" />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ProductGroupId, new { @class = "col-form-label" })
+                    <select class="form-control @(Model.ProductGroupId > 0 ? "disabled": "")" name="ProductGroupId" id="ProductGroupId">
+                        <option value="0">Select</option>
+                        @foreach (var item in Model.GroupList)
+                        {
+                            <option value="@item.Id" title="@item.GroupDescription" @if (Model.ProductGroupId == item.Id) { <text> selected="selected" </text> }>@item.GroupCode</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(m => m.ProductGroupId)
+                    @Html.HiddenFor(model => model.ProductGroupId)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ProductId, new { @class = "col-form-label" })
+                    <select class="form-control @(Model.ProductId > 0 ? "disabled": "")" name="ProductId" id="ProductId">
+                        <option value="0">Select</option>
+                        @foreach (var item in Model.ProductList)
+                        {
+                            <option value="@item.Id" title="@item.ProductDescription" @if (Model.ProductId == item.Id) { <text> selected="selected" </text> }>@item.ProductNumber</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(m => m.ProductId)
+                    @Html.HiddenFor(model => model.ProductId)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.EffectiveDate, new { @class = "col-form-label" })
+                    @Html.TextBoxFor(m => m.EffectiveDate, new { @class = "form-control datepickertime" })
+                    @Html.ValidationMessageFor(m => m.EffectiveDate)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ExpirationDate, new { @class = "col-form-label" })
+                    @Html.TextBoxFor(m => m.ExpirationDate, new { @class = "form-control datepickertime" })
+                    @Html.ValidationMessageFor(m => m.ExpirationDate)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ProductPrice, new { @class = "col-form-label" })
+                    @Html.TextBoxFor(m => m.ProductPrice, new { @class = "form-control text-danger", @type = "number" })
+                    @Html.ValidationMessageFor(m => m.ProductPrice)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NewPrice, new { @class = "col-form-label" })
+                    @Html.TextBoxFor(m => m.NewPrice, new { @class = "form-control", @type = "number" })
+                    @Html.ValidationMessageFor(m => m.NewPrice)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Active, new { @class = "col-form-label" })
+                    @Html.CheckBoxFor(m => m.Active)
+                    @Html.ValidationMessageFor(m => m.Active)
+                </div>
+            </div>
+        </div>
+    </form>
+    <div>
+        @if (Model.Id > 0)
+        {
+            <button class="btn btn-primary save-agreement">Update</button>
+        }
+        else
+        {
+            <button class="btn btn-primary save-agreement">Save</button>
+        }
+        <button class="btn btn-primary btncancel">Cancel</button>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

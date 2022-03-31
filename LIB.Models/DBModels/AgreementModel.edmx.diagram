@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3537ddfd4fed4d6390aacf739762d34e" Name="Diagram1">
+        <EntityTypeShape EntityType="AgreementManagementModel.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AgreementManagementModel.Agreement" Width="1.5" PointX="5.25" PointY="10.875" />
+        <EntityTypeShape EntityType="AgreementManagementModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="AgreementManagementModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="AgreementManagementModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="AgreementManagementModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="AgreementManagementModel.ProductGroupMaster" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="AgreementManagementModel.ProductMaster" Width="1.5" PointX="3" PointY="13" />
+        <AssociationConnector Association="AgreementManagementModel.FK_Agreement_ProductGroupMaster" />
+        <AssociationConnector Association="AgreementManagementModel.FK_Agreement_ProductMaster" />
+        <AssociationConnector Association="AgreementManagementModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="AgreementManagementModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="AgreementManagementModel.FK_ProductMaster_ProductGroupMaster" />
+        <AssociationConnector Association="AgreementManagementModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

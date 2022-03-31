@@ -1,0 +1,27 @@
+﻿
+@using LIB.Models.DBModels
+@using LIB.Models.Agreement
+
+@model AgreementListViewModel
+@*<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+
+@foreach (var item in Model.DataList)
+{
+    <tr>
+        <td> @item.GroupDescription </td>
+        <td> @item.ProductDescription </td>
+        <td> @item.ProductNumber </td>
+        <td> @item.ProductPrice </td>
+        <td> @item.NewPrice </td>
+        <td>
+            <a href="javascript:void(0);" class="add-edit-detail" data-id="@item.Id"><i class="fas fa-eye">Edit</i></a>
+            <a href="javascript:void(0);" data-empId="@item.Id" class="table-action-icon delete-agreement"><i class="fas fa-trash">Delete</i></a>
+        </td>
+    </tr>
+}
+
+@*@section Scripts{
+        <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+        <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    }*@

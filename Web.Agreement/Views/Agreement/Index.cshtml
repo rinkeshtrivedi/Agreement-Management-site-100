@@ -1,0 +1,86 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+    var userId = User.Identity.GetUserId();
+}
+
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+<h2>Index</h2>
+<input type="hidden" name="UserId" id="UserId" value="@userId" />
+
+<a href="javascript:void(0);" id="addBtn" class="btn btn-primary add-edit-detail">Create</a>
+
+<!--<div id="dialog" title="Create Album" style="overflow: hidden;">-->
+@*@Html.Partial("_Detail");*@
+<!--"Demo test"
+</div>-->
+<div id="dialog" style="display:none;width:500px;">
+</div>
+<div id="divAgreement">
+
+</div>
+<br />
+<div style="width:1000px; margin:0 auto">
+    <table id="AgreementList">
+        <thead>
+            <tr>
+                <th>
+                    Group Description
+                </th>
+                <th>
+                    Product Description
+                </th>
+                <th>
+                    Product Number
+                </th>
+                <th>
+                    Product Price
+                </th>
+                <th>
+                    New Price
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th>
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <!--<tbody>-->
+        @*@Html.Partial("~/Views/Agreement/_List.cshtml")*@
+        <!--</tbody>-->
+    </table>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/scripts/Agreement")
+
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script>
+        var PageNumber = 1;
+        var PageSize = 10;
+        var SortColumn = 'Id';
+        var SortOrder = 'DESC';
+
+        $(function () {
+            $("#dialog").dialog({
+                autoOpen: false,
+                modal: true,
+                title: "Agreement",
+                width: "500px"
+            });
+        });
+
+                                    //$(function () {
+                                    //    $("#AgreementList").dataTable();
+                                    //})
+
+    </script>
+}
